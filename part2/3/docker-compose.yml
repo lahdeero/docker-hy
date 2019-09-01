@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  fe:
+    image: docker-hy/frontend
+    ports: 
+      - 5000:5000
+  be:
+    image: docker-hy/backend
+    ports: 
+      - 8000:8000
+

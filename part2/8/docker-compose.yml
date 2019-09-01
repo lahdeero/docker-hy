@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  frontend:
+    image: docker-hy/frontend
+    environment:
+      API_URL: http://192.168.1.20
+  nginx:
+    image: nginx
+    volumes:
+      - ./data/nginx/app.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 8000:8000
+  redis:
+    image: redis
+  db: 
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=example
+  backend:
+    image: docker-hy/backend
+    environment:
+      - REDIS=redis
+      - DB_HOST=db
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=example
